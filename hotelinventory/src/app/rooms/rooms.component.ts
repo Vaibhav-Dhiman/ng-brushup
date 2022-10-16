@@ -10,6 +10,7 @@ export class RoomsComponent implements OnInit {
  myString = 'hello my string';
  numberOfRooms= 39;
  hideRooms = false;
+ selectedRoom!: RoomList;
  
  rooms: Room = {
     availableRooms: 10,
@@ -54,6 +55,12 @@ export class RoomsComponent implements OnInit {
 
   constructor() { 
     // should not write any blocking code in ctor
+  }
+
+
+
+  selectRoom(room: RoomList) {
+    this.selectedRoom = room;
   }
 
   ngOnInit(): void {
