@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HeaderComponent } from '../header/header.component';
 import { Room, RoomList } from './rooms';
 
 @Component({
@@ -11,7 +12,8 @@ export class RoomsComponent implements OnInit {
  numberOfRooms= 39;
  hideRooms = false;
  selectedRoom!: RoomList;
- 
+ title = 'Hotel Highland';
+
  rooms: Room = {
     availableRooms: 10,
     bookedRooms: 5,
@@ -53,14 +55,32 @@ export class RoomsComponent implements OnInit {
   },
 ]
 
+// by using view child you can instantiate a component to get the data from that component same as input but wihtout using input
+// if pass static option as true in below it can get the data on ngInit as well
+// if above is true then it will call in ngafter view in it
+@ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
+
   constructor() { 
     // should not write any blocking code in ctor
   }
 
-
-
   selectRoom(room: RoomList) {
     this.selectedRoom = room;
+  }
+
+  addRoom() {
+    const room: RoomList = {
+    roomNumber:  101,
+    roomType: 'Delux Room',
+    amenities: 'Air Condition, Mountain View, Tv, WiFi, Bathroom',
+    price: 1600,
+    photos: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
+    checkinTime: new Date('8-Dec-2022'),
+    checkoutTIme: new Date('9-Dec-2022'),
+    rating: 2.4,
+    }
+    ///this.roomList.push(room);
+    this.roomList = [...this.roomList, room];
   }
 
   ngOnInit(): void {
@@ -68,6 +88,7 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.title = 'Hotel Kamna Hills';
   }
 
 }

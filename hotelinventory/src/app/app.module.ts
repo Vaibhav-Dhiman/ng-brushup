@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
+import { ContainerComponent } from './container/container.component';
+import { EmployeeComponent } from './employee/employee.component';
 
 @NgModule({
-  declarations: [
+  declarations: [			
     AppComponent,
     RoomsComponent,
-    RoomsListComponent
-  ],
+    RoomsListComponent,
+      HeaderComponent,
+      ContainerComponent,
+      EmployeeComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,

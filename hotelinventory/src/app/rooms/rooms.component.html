@@ -3,13 +3,20 @@
 </div> -->
 
 <!-- {{rooms.availableRooms ?? 'No rooms'}} -->
+
+<hinv-header></hinv-header>
+
+
 <div *ngIf="selectedRoom">
     {{selectedRoom | json}}
 </div>
 
-
-<div *ngIf="rooms?.availableRooms">
-    <hinv-rooms-list [rooms]="roomList" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+<div>
+    <button class="btn btn-secondary" (click)="addRoom()">AddRoom</button>
 </div>
 
-<!-- <button (click)="toggle()">Toggle</button> -->
+<div *ngIf="rooms?.availableRooms">
+    <hinv-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
+</div>
+
+<button (click)="toggle()">Toggle</button>
