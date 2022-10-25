@@ -69,11 +69,11 @@ susbcription!: Subscription;
     this.roomService.getPhotos().subscribe(event => {
       switch (event.type) {
        case HttpEventType.Sent: {
-        console.log('Request has been made');
+       // console.log('Request has been made');
         break;
        }
        case HttpEventType.ResponseHeader: {
-        console.log('Request success');
+       // console.log('Request success');
         break;
        }
        case HttpEventType.DownloadProgress: {
@@ -81,7 +81,7 @@ susbcription!: Subscription;
         break;
        }
        case HttpEventType.Response: {
-        console.log(event.body);
+       // console.log(event.body);
         break;
        }
       }

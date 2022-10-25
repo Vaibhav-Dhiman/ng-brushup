@@ -20,13 +20,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 function initFactory(initService: InitService) {
 return () => initService.init();
 }
 
 @NgModule({
-  declarations: [			
+  declarations: [				
     AppComponent,
     RoomsComponent,
     RoomsListComponent,
@@ -34,6 +35,7 @@ return () => initService.init();
       ContainerComponent,
       EmployeeComponent,
       AppNavComponent,
+      NotFoundComponent
    ],
   imports: [
     BrowserModule,

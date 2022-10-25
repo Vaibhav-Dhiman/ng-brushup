@@ -19,7 +19,7 @@ export class RoomsListComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     // this also work in child component where values are getting change
-    console.log(changes);
+   // console.log(changes);
   }
 
   ngOnInit() {

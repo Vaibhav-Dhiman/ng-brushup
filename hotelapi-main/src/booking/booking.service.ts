@@ -8,7 +8,7 @@ export class BookingService {
     bookings : BookingDTO[] = [];
 
   create(booking: BookingDTO) {
-    console.log(BookingDTO);
+  //  console.log(BookingDTO);
     booking.bookingId = v4();
     this.bookings = [...this.bookings, booking];
     // console.log(this.rooms);

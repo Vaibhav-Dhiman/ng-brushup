@@ -42,11 +42,11 @@ export class RoomsService {
     },
   ];
   create(createRoomDto: CreateRoomDto) {
-    console.log(createRoomDto);
+   // console.log(createRoomDto);
     createRoomDto.roomNumber = v4();
-    console.log(createRoomDto);
+   // console.log(createRoomDto);
     this.rooms = [...this.rooms, createRoomDto];
-    console.log(this.rooms);
+   // console.log(this.rooms);
     return this.rooms;
   }
 

@@ -13,7 +13,7 @@ export class RequestInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('-- Request interceptor --', request);
+   // console.log('-- Request interceptor --', request);
     return next.handle(request);
   }
 }
