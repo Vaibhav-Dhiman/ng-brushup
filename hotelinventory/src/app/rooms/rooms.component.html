@@ -11,9 +11,7 @@
     {{selectedRoom | json}}
 </div>
 
-<div>
-    <button class="btn btn-secondary" (click)="addRoom()">AddRoom</button>
-</div>
+<!-- <hinv-rooms-add></hinv-rooms-add> -->
 
 <div *ngIf="rooms?.availableRooms">
     <hinv-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
