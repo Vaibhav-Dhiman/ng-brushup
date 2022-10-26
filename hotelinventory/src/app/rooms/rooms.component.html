@@ -12,9 +12,12 @@
 </div>
 
 <!-- <hinv-rooms-add></hinv-rooms-add> -->
+<button (click)="addRoom()">Add Room</button>
 
 <div *ngIf="rooms?.availableRooms">
     <hinv-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></hinv-rooms-list>
 </div>
 
 <button (click)="toggle()">Toggle</button>
+
+<router-outlet></router-outlet>

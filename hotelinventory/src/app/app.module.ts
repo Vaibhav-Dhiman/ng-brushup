@@ -4,10 +4,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RoomsComponent } from './rooms/rooms.component';
-import { RoomsListComponent } from './rooms/rooms-list/rooms-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { APP_CONFIG, APP_SERVICE_CONFIG } from 'src/appconfig/appconfig.service';
@@ -22,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { RoomsModule } from './rooms.module';
 
 function initFactory(initService: InitService) {
 return () => initService.init();
@@ -30,9 +28,6 @@ return () => initService.init();
 @NgModule({
   declarations: [				
     AppComponent,
-    RoomsComponent,
-    RoomsListComponent,
-      HeaderComponent,
       ContainerComponent,
       EmployeeComponent,
       AppNavComponent,
@@ -41,6 +36,7 @@ return () => initService.init();
   imports: [
     BrowserModule,
     FormsModule,
+    RoomsModule, // all thr feature module must come before app routing modules
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
