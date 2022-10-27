@@ -19,24 +19,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
-import { RoomsModule } from './rooms.module';
+import { RouteConfigToken } from './services/routeConfig.service';
+//import { RoomsModule } from './rooms.module';
+import { LoginComponent } from './login/login.component';
 
 function initFactory(initService: InitService) {
 return () => initService.init();
 }
 
 @NgModule({
-  declarations: [				
+  declarations: [					
     AppComponent,
       ContainerComponent,
       EmployeeComponent,
       AppNavComponent,
-      NotFoundComponent
+      NotFoundComponent,
+      LoginComponent
    ],
   imports: [
     BrowserModule,
     FormsModule,
-    RoomsModule, // all thr feature module must come before app routing modules
+   // RoomsModule, // all thr feature module must come before app routing modules
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -59,7 +62,8 @@ return () => initService.init();
  useFactory: initFactory,
  deps: [InitService],
  multi: true,
-}],
+},
+{provide: RouteConfigToken, useValue: 'Home' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

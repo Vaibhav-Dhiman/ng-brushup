@@ -2,6 +2,7 @@ import { HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { HeaderComponent } from '../header/header.component';
+import { ConfigService } from '../services/config.service';
 import { RoomsService } from '../services/rooms.service';
 import { Room, RoomList } from './rooms';
 
@@ -38,7 +39,7 @@ susbcription!: Subscription;
 // if above is true then it will call in ngafter view in it
 @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
 
-  constructor(private readonly roomService: RoomsService) {   // should not write any blocking code in ctor
+  constructor(private readonly roomService: RoomsService, private readonly config: ConfigService) {   // should not write any blocking code in ctor
   }
 
   selectRoom(room: RoomList) {
@@ -65,7 +66,7 @@ susbcription!: Subscription;
 
 
   ngOnInit() {
-
+    console.log(this.config);
     this.roomService.getPhotos().subscribe(event => {
       switch (event.type) {
        case HttpEventType.Sent: {
