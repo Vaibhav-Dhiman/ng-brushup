@@ -66,7 +66,7 @@ susbcription!: Subscription;
 
 
   ngOnInit() {
-    console.log(this.config);
+   // console.log(this.config);
     this.roomService.getPhotos().subscribe(event => {
       switch (event.type) {
        case HttpEventType.Sent: {

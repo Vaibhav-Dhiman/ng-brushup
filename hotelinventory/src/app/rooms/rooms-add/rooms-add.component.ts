@@ -29,9 +29,9 @@ export class RoomsAddComponent implements OnInit {
 
   onSubmit(myForm: NgForm) {
  
-    console.log(myForm.value);
+ //   console.log(myForm.value);
  
-    console.log(myForm.valid);
+ //   console.log(myForm.valid);
      
   }
 

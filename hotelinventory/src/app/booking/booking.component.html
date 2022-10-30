@@ -161,17 +161,25 @@
             </mat-expansion-panel>
         </mat-accordion>
     </div>
+    <br />
 
 
     <div>
         <button mat-raised-button color="primary" type="button" (click)="addGuest()">Add Guest</button>
     </div>
+    <br />
 
     <div formArrayName="guests">
         <div *ngFor="let guest from guests.controls; let i= index">
+            {{guest}}
             <div [formGroupName]="i" ]>
                 <mat-form-field class="example-full-width" appearance="fill">
-                    <input type="number" matInput formControlName="guestName" placeholder="Guest Name">
+                    <input type="text" matInput formControlName="guestName" placeholder="Guest Name">
+                </mat-form-field>
+            </div>
+            <div [formGroupName]="i" ]>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <input type="number" matInput formControlName="age" placeholder="Guest Age">
                 </mat-form-field>
             </div>
         </div>

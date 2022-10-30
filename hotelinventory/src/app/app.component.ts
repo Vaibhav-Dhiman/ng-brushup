@@ -17,10 +17,14 @@ export class AppComponent implements OnInit  {
     // this.router.events.subscribe(rt => console.log(rt));
    this.router.events.pipe(
       filter((event) => event instanceof  NavigationStart))
-      .subscribe(data => console.log('NavigationStart'));
+      .subscribe(data =>
+         console.log('NavigationStart')
+         );
 
       this.router.events.pipe(
         filter((event) => event instanceof  NavigationEnd))
-        .subscribe(data => console.log('NavigationCompleted'));
+        .subscribe(data => 
+          console.log('NavigationCompleted')
+        );
   }
 }

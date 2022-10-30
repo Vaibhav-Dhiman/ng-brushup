@@ -43,13 +43,13 @@ export class BookingComponent implements OnInit {
 
   addBooking() {
     // by using bookingForm.getRawValue we can get the values of disable controls as well
-    console.log(this.bookingForm.getRawValue);
+    console.log(this.bookingForm.value);
   }
 
   addGuest() {
     // add controls on button click as dynamic
     this.guests.controls.push(
-      this.fb.group({ guestName: [''], age: new FormControl('')}
+      this.fb.group({ guestName: 'vaibhav', age: new FormControl('234')}
       ));
   }
 }

@@ -8,8 +8,8 @@ import { RouteConfigToken } from './routeConfig.service';
 export class ConfigService {
 
 constructor(@Inject(RouteConfigToken) private configToken: RouteConfig) {
-  console.log('------------->', 'Config Services');
-  console.log('------------->', this.configToken);
+//  console.log('------------->', 'Config Services');
+ // console.log('------------->', this.configToken);
  }
 
 }
