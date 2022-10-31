@@ -2,17 +2,17 @@
 
 <form [formGroup]="bookingForm" class="example-form" (ngSubmit)="addBooking()">
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Guest Name</mat-label>
-        <input type="text" matInput formControlName="guestName" placeholder="Guest Name">
-        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        <input type="text" matInput formControlName="guestName" placeholder="Guest Name"> -->
+    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+    <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
         Please enter a valid email address
     </mat-error>
     <mat-error *ngIf="emailFormControl.hasError('required')">
         Email is <strong>required</strong>
     </mat-error> -->
-    </mat-form-field>
+    <!-- </mat-form-field> -->
 
 
     <mat-form-field class="example-full-width" appearance="fill">
@@ -96,7 +96,7 @@
         </mat-error> -->
     <!-- </mat-form-field> -->
 
-    <div formGroupName="guestAddress">
+    <div formGroupName="address">
         <mat-accordion class="example-headers-align" multi>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
@@ -170,21 +170,39 @@
     <br />
 
     <div formArrayName="guests">
-        <div *ngFor="let guest from guests.controls; let i= index">
-            {{guest}}
-            <div [formGroupName]="i" ]>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <input type="text" matInput formControlName="guestName" placeholder="Guest Name">
-                </mat-form-field>
-            </div>
-            <div [formGroupName]="i" ]>
-                <mat-form-field class="example-full-width" appearance="fill">
-                    <input type="number" matInput formControlName="age" placeholder="Guest Age">
-                </mat-form-field>
-            </div>
-        </div>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title> Guests </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngFor="let guest of guests.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <mat-form-field>
+                            <input type="text" matInput formControlName="guestName" placeholder="Guest Name" />
+                            <mat-error *ngIf="
+                      bookingForm
+                        .get(['guests', i, 'guestName'])
+                        ?.hasError('required')
+                    ">
+                                Guest name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="number" matInput formControlName="age" placeholder="Age" />
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button mat-raised-button color="primary" type="button" (click)="removeGuest(i)">
+                            Remove Guest
+                        </button>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
-
+    <!-- <div>
+        <mat-checkbox class="example-margin" formControlName="tnc">TnC</mat-checkbox>
+    </div> -->
     <div class="example-button-row">
         <button mat-raised-button color="primary">Book Room</button>
     </div>

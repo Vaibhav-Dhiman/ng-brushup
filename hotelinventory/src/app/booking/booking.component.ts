@@ -10,6 +10,7 @@ import { ConfigService } from '../services/config.service';
 export class BookingComponent implements OnInit {
   
   bookingForm!: FormGroup;
+
   get guests() {
     return this.bookingForm.get('guests') as FormArray;
   } 
@@ -27,7 +28,7 @@ export class BookingComponent implements OnInit {
       bookingDate: [''],
       mobileNumber: [''],
       guestName: [''],
-      guestAddress: this.fb.group({
+      address: this.fb.group({
        addressLine1: [''],
        addressLine2: [''],
        city: [''],
@@ -48,9 +49,14 @@ export class BookingComponent implements OnInit {
 
   addGuest() {
     // add controls on button click as dynamic
-    this.guests.controls.push(
-      this.fb.group({ guestName: 'vaibhav', age: new FormControl('234')}
+    this.guests.push(
+      this.fb.group({ guestName: [''], age: new FormControl('')}
       ));
+  }
+
+  removeGuest(roomId:any) {
+    this.bookingForm.get('guests')
+    console.log(roomId);
   }
 }
 
