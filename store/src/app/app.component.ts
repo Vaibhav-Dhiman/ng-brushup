@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <!--The content below is only a placeholder and can be replaced.-->
    <hinv-header></hinv-header>
+   <router-outlet></router-outlet>
   `,
   styles: []
 })
