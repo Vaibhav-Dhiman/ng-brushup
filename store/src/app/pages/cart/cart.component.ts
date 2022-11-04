@@ -41,7 +41,25 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = this.cart.items;
+    this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = this.cart.items;
+    });
+
   }
+  onAddQuantity(element: CartItem) : void {
+    this.cartService.addToCart(element);
+  }
+  onRemoveQuantity(element: CartItem) : void {
+    this.cartService.removeQuantity(element);
+  }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+  
+  onRemoveFromCart(item: CartItem):void {
+    this.cartService.removeFromCart(item);
+ }
 
 }
