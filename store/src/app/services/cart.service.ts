@@ -50,7 +50,7 @@ export class CartService {
   }
 
   removeFromCart(item: CartItem): void {
-    const filteredItems = this.cart.value.items.filter((_item) => item.id !=item.id);
+    const filteredItems = this.cart.value.items.filter((_item) => _item.id !=item.id);
     this.cart.next({items: filteredItems});
     this._snackBar.open('Item is removed', 'OK', {duration: 3000});
   }
