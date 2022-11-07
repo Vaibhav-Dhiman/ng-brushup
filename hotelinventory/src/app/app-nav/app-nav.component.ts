@@ -13,6 +13,7 @@ export class AppNavComponent {
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
+      // share replay is used when we hit same api in multiple compoenent to getting the same data
       shareReplay()
     );
 
