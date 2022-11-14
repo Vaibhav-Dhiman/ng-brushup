@@ -1,13 +1,28 @@
 
 import { Router } from 'express';
-import { sample_foods, sample_tags, sample_users } from "../data";
+import { sample_foods, sample_tags } from "../data";
+import asyncHandler from 'express-async-handler';
+import { FoodModel } from '../models/food.model';
 
 const router = Router();
 
 export default router;
 
-router.get("/api/foods", (req, res) => {
-    res.send(sample_foods);
+router.get("/seed", asyncHandler(
+    async(req, res) => {
+        const foodsCount = await FoodModel.countDocuments();
+        if(foodsCount > 0) {
+            res.send('seed already done!')
+            return;
+        }
+        await FoodModel.create(sample_foods);
+        res.send('seeding done!');
+    }
+));
+
+router.get("/", async(req, res) => {
+    const foods = await FoodModel.find({});
+    res.send(foods);
 });
 
 router.get("/search/:searchTerm", (req, res) => {
