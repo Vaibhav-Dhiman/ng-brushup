@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(cartService: CartService, private userService: UserService) {
     cartService.getCartObervable().subscribe(newCart => this.cartQuantity = newCart.totalCount);
-    userService.userObervable.subscribe(usr => this.user = usr);
+    userService.userObervable.subscribe((usr) => {
+      this.user = usr
+    });
    }
 
   ngOnInit(): void {

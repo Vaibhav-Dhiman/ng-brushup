@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { sample_users } from "../data";
 import jwt from "jsonwebtoken";
 import asyncHandler from 'express-async-handler';
-import { UserModel } from '../models/user.model';
+import { User, UserModel } from '../models/user.model';
 
 const router = Router();
 
@@ -20,19 +20,26 @@ router.get("/seed", asyncHandler(
     }
 ));
 
-router.post("/login", (req,res) => {
+router.post("/login", asyncHandler(
+    async(req,res) => {
     const { email , password} = req.body;
-    const user = sample_users.find(user => user.email === email && user.password === password);
+    const user = await UserModel.findOne({email, password});
     if(user) {
         const token = generateTokenResponse(user)
-        res.send(token);
+        res.json({
+            token: `${token.token}`,
+              id: user._id,
+              name: user.name,
+              email: user.email,
+              address: user.address,
+          });
     } else {
         res.status(400).send('User name or password not valid');
     }
-});
+}));
 
-const generateTokenResponse = (user: any) => {
-    const token = jwt.sign({
+const generateTokenResponse = (user: User) => {
+    let token = jwt.sign({
         email: user['email'], isAdmin: user['isAdmin']
     }, "somerandamtexttogeneratetokenthisiskey", {expiresIn: "1d"})
     user.token = token;

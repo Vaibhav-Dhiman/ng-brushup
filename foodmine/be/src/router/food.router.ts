@@ -25,24 +25,51 @@ router.get("/", async(req, res) => {
     res.send(foods);
 });
 
-router.get("/search/:searchTerm", (req, res) => {
-    const searchTerm = req.params.searchTerm;
-    const foods = sample_foods.filter(food => food.name.toLowerCase().includes(searchTerm.toLowerCase()));
+router.get("/search/:searchTerm", async (req, res) => {
+    const searchRegex = new RegExp(req.params.searchTerm, 'i');
+    const foods = await FoodModel.find({name: {$regex:searchRegex}});
     res.send(foods);
 });
 
-router.get("/tags", (req,res) => {
-    res.send(sample_tags)
-});
+router.get("/tags", asyncHandler(async(req,res) => {
+    const tags = await FoodModel.aggregate([
+        {
+            $unwind:'$tags'
+        },
+        {
+            $group:{
+                _id: '$tags',
+                count: {$sum: 1}
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                name: '$_id',
+                count: '$count'
+            }
+        }
+    ]).sort({count: -1})
 
-router.get("/tags/:tagName", (req,res) => {
-    const tagName = req.params.tagName;
-    const tags = sample_foods.filter(food => food.tags?.includes(tagName));
+    const all = {
+        name: 'All',
+        count: await FoodModel.countDocuments()
+    }
+
+    tags.unshift(all);
+
     res.send(tags);
-});
+}));
 
-router.get("/:foodId", (req,res) => {
+router.get("/tags/:tagName", asyncHandler(
+async(req,res) => {
+    const foods = FoodModel.find({tags: req.params.tagName})
+    res.send(foods);
+}));
+
+router.get("/:foodId", asyncHandler(
+    async(req,res) => {
     const foodId = req.params.foodId;
-    const food = sample_foods.find(food => food.id === foodId);
+    const food = await FoodModel.findById(foodId);
     res.send(food);
-});
+}));
